@@ -85,30 +85,31 @@ main {
 .hud {
   color: $dutch-white;
   padding: 1rem;
-  width: 70%;
+  width: 80%;
   * {
     margin: 1rem;
   }
 }
 .game {
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 80%;
 }
 .menu {
+  width: 90%;
   display: flex;
-  flex-basis: 45%;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
 }
 .btn {
-  border: 0.2rem solid $lavender-blue;
+  border: 0.1rem solid $lavender-blue;
   background-color: $eerie-black;
-  flex-basis: 45px;
+  flex-basis: 50%;
   color: $dutch-white;
-  font-size: 1.4rem;
-  width: 45%;
+  font-size: 0.6rem;
   margin: 1rem;
   cursor: pointer;
   &:hover {
@@ -122,5 +123,12 @@ a {
   color: $dutch-white;
   font-size: 14px;
   bottom: 0;
+}
+@media (min-width: 750px) {
+  .btn {
+    flex-basis: 40%;
+    height: 40px;
+    font-size: 1.2rem;
+  }
 }
 </style>

@@ -45,21 +45,22 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/base.scss";
 .cell-container {
-  min-width: 200px;
-  min-height: 200px;
-  border-radius: 0.2rem;
-  justify-content: space-between;
+  width: 50vw;
   align-items: center;
-  display: grid;
-  grid-template-columns: repeat(4, calc((200px / 4) - 10px));
-  padding: 5px;
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .cell {
+  flex-basis: calc(50vw / 5);
+  height: calc(50vw / 5);
+  margin: 2px;
+  flex-shrink: 0;
+  flex-grow: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc((200px / 4) - 10px);
   background-color: $dutch-white;
   border-radius: 2px;
   &.empty {
@@ -73,13 +74,15 @@ export default {
 
 @media (min-width: 750px) {
   .cell-container {
-    min-width: 400px;
-    min-height: 400px;
-    grid-template-columns: repeat(4, calc((400px / 4) - 10px));
+    width: 40vw;
+    padding: 5px;
   }
 
   .cell {
-    height: calc((400px / 4) - 10px);
+    flex-basis: calc(40vw / 5);
+    height: calc(40vw / 5);
+    flex-shrink: 0;
+    flex-grow: 0;
     &.empty {
       background-color: hsl(180, 5%, 35.8%);
     }
