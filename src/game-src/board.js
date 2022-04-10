@@ -1,16 +1,13 @@
-export default function boardFactory(size) {
+import { generateArray, repeat } from "../lib/utils";
+function boardFactory(size) {
   return {
     size,
     cells: generateArray(size * size - 1, 1),
     emptyCell: 15,
+    moves: 0,
   };
 }
-const generateArray = (num, add) => {
-  let puzzle = [...Array(num)].map((_, i) => i + add);
-  puzzle.push(0);
-  return puzzle;
-};
-
+// these check if a cell can move in a certain direction
 const canMoveRight = (index, boardSize) => !((index + 1) % boardSize === 0);
 const canMoveLeft = (index, boardSize) => !(index % boardSize === 0);
 const canMoveUp = (index, boardSize) =>
@@ -22,6 +19,7 @@ function swapCell(board, movingCell) {
   board.cells[board.emptyCell] = board.cells[movingCell];
   board.cells[movingCell] = 0;
   board.emptyCell = movingCell;
+  board.moves++;
 }
 
 // these function shift the board
@@ -39,33 +37,19 @@ function moveRight(board) {
   return willMove;
 }
 function moveDown(board) {
-  console.log("down");
   const movingCell = board.emptyCell - board.size;
   const willMove = canMoveDown(movingCell, board.size);
   if (willMove) swapCell(board, movingCell);
   return willMove;
 }
 function moveUp(board) {
-  console.log("up");
   const movingCell = board.emptyCell + board.size;
   const willMove = canMoveUp(movingCell, board.size);
   if (willMove) swapCell(board, movingCell);
   return willMove;
 }
 
-const moveSelector = {
-  1: moveRight,
-  "-1": moveLeft,
-  4: moveDown,
-  "-4": moveUp,
-};
-
-function repeat(num, cb) {
-  for (let i = num; i > 0; i--) {
-    cb();
-  }
-}
-
+// calculates the number of times and the direction a cell can move and moves it
 function moveCell(index, board) {
   const offset = board.emptyCell - index;
   console.log(offset);
@@ -95,6 +79,7 @@ function moveCell(index, board) {
   }
 }
 
+// randomized the board based on a difficulty level it starts from the solution and makes some number of mvoes
 function randomizeBoard(difficulty, board) {
   const moves = [moveUp, moveDown, moveLeft, moveRight];
   while (difficulty) {
@@ -105,6 +90,15 @@ function randomizeBoard(difficulty, board) {
       difficulty--;
     }
   }
+  board.moves = 0;
+}
+
+// a function that check if the board is solved
+function checkBoardState(board) {
+  for (let i = 0; i < board.cells.length - 1; i++) {
+    if (i + 1 !== board.cells[i]) return false;
+  }
+  return true;
 }
 
 export {
@@ -115,4 +109,5 @@ export {
   moveCell,
   boardFactory,
   randomizeBoard,
+  checkBoardState,
 };
