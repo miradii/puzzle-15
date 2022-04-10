@@ -63,6 +63,8 @@ export default {
         </button>
       </div>
     </div>
+
+    <a href="https://github.com/miradii/puzzle-15">Source Code</a>
   </main>
 </template>
 
@@ -114,5 +116,11 @@ main {
     color: $eerie-black;
     transition: 0.3s ease;
   }
+}
+a {
+  text-decoration: none;
+  color: $dutch-white;
+  font-size: 14px;
+  bottom: 0;
 }
 </style>
