@@ -85,6 +85,8 @@ main {
 .hud {
   color: $dutch-white;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
   width: 80%;
   * {
     margin: 1rem;
