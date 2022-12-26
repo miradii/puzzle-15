@@ -22,7 +22,7 @@ function swapCell(board, movingCell) {
   board.moves++;
 }
 
-// these function shift the board
+// these functions shift the board
 function moveLeft(board) {
   const movingCell = board.emptyCell + 1;
   const willMove = canMoveLeft(movingCell, board.size);
@@ -79,7 +79,7 @@ function moveCell(index, board) {
   }
 }
 
-// randomized the board based on a difficulty level it starts from the solution and makes some number of mvoes
+// randomized the board based on a difficulty level it starts from the solution and makes some number of moves
 function randomizeBoard(difficulty, board) {
   const moves = [moveUp, moveDown, moveLeft, moveRight];
   while (difficulty) {
@@ -93,7 +93,7 @@ function randomizeBoard(difficulty, board) {
   board.moves = 0;
 }
 
-// a function that check if the board is solved
+// a function that checks if the board is solved
 function checkBoardState(board) {
   for (let i = 0; i < board.cells.length - 1; i++) {
     if (i + 1 !== board.cells[i]) return false;
